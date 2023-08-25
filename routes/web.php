@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ProductsController;
+use App\Models\Penitip;
+use App\Models\Products;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +24,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('admin.dashboard.index');
 });
+
+// Route::get('/barang', function () {
+//     return view('admin.products.index');
+// });
+// Route::get('/tambahbarang', function () {
+//     return view('products/create');
+// });
+// Route::get('/stok', function () {
+//     return view('admin.stok.index');
+// });
+
+
+Route::resource('products', ProductsController::class);

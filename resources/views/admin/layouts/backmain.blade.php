@@ -43,8 +43,8 @@
             </a>
 					</li>
 
-					<li class="sidebar-item {{ (request()->segment('1') == 'products') ? 'active' : '' }}">
-						<a class="sidebar-link" href="{{ url('products') }}">
+					<li class="sidebar-item {{ (request()->segment('1') == 'barang') ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{ url('barang') }}">
               <i class="align-middle" data-feather="folder-plus"></i> <span class="align-middle">Barang</span>
             </a>
 					</li>
@@ -93,7 +93,6 @@
             </a>
 					</li>
 				</ul>
-
 			</div>
 		</nav>
 
@@ -115,7 +114,7 @@
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
-								<div class="dropdown-divider"></div>
+                                <hr>
 								<a class="dropdown-item" href="#">Log out</a>
 							</div>
 						</li>
@@ -138,8 +137,24 @@
 					<div class="row text-muted">
 						<div class="col-6 text-start">
 							<p class="mb-0">
-								<a class="text-muted" href="https://www.instagram.com/zaky_rama04/" target="_blank"><strong>Zaky Rama</strong></a> - <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>Bootstrap Admin Template</strong></a>								&copy;
+								<a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> - <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>Bootstrap Admin Template</strong></a>								&copy;
 							</p>
+						</div>
+						<div class="col-6 text-end">
+							<ul class="list-inline">
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -147,7 +162,7 @@
 		</div>
 	</div>
 
-	<script src="{{ asset('/')}}assets/js/app.js"></script>
+	
     {{-- data tables --}}
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -169,6 +184,9 @@
         } );
     } );
     </script>
+
+
+
     {{-- end data tables --}}
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
