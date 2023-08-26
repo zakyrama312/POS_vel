@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\StocksController;
 use App\Models\Penitip;
 use App\Models\Products;
+use App\Models\Stocks;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,3 +39,4 @@ Route::get('/', function () {
 
 
 Route::resource('products', ProductsController::class);
+Route::resource('stocks', StocksController::class);

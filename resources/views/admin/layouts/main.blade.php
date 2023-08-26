@@ -49,8 +49,8 @@
             </a>
 					</li>
 
-					<li class="sidebar-item {{ (request()->segment('1') == 'stok') ? 'active' : '' }}">
-						<a class="sidebar-link" href="{{ url('stok') }}">
+					<li class="sidebar-item {{ (request()->segment('1') == 'stocks') ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{ url('stocks') }}">
               <i class="align-middle" data-feather="folder-plus"></i> <span class="align-middle">Stok Barang</span>
             </a>
 					</li>
