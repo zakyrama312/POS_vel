@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PenitipController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\SellersController;
+use App\Http\Controllers\SesiController;
 use App\Http\Controllers\StocksController;
 use App\Models\Penitip;
 use App\Models\Products;
@@ -23,20 +27,33 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
-    return view('admin.dashboard.index');
+Route::middleware(['guest'])->group(function () {
+    Route::get('/', [SesiController::class, 'index'])->name('login');
+    Route::post('/', [SesiController::class, 'login']);
 });
 
-// Route::get('/barang', function () {
-//     return view('admin.products.index');
-// });
-// Route::get('/tambahbarang', function () {
-//     return view('products/create');
-// });
-// Route::get('/stok', function () {
-//     return view('admin.stok.index');
-// });
+Route::get('/home', function () {
+    return redirect('/dashboard');
+});
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [LoginController::class, 'index']);
+    Route::get('/dashboard', [LoginController::class, 'admin'])->middleware('userAkses:admin');
+    Route::get('/logout', [SesiController::class, 'logout']);
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard.index');
+    });
 
-Route::resource('products', ProductsController::class);
-Route::resource('stocks', StocksController::class);
+    Route::get('/printbarang', function () {
+        $print = Products::all();
+        return view('admin.products.print', compact('print'));
+    });
+    Route::get('/printstock', function () {
+        $print = Products::all();
+        return view('admin.stocks.print', compact('print'));
+    });
+
+    Route::resource('products', ProductsController::class);
+    Route::resource('stocks', StocksController::class);
+    Route::resource('sellers', SellersController::class);
+});

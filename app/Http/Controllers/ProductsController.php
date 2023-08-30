@@ -47,7 +47,7 @@ class ProductsController extends Controller
             'id_barang'     => $request->kode,
             'nama_barang'     => $request->namabarang,
             'stok_awal'   => $request->stokmasuk,
-            'stok_akhir' => '',
+            'stok_akhir' => 0,
             'disc' => '',
             'hpp' => $request->hpp,
             'harga_jual' => $request->harga,

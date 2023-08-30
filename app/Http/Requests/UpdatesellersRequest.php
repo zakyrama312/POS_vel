@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePenitipRequest extends FormRequest
+class UpdatesellersRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class StorePenitipRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nama_penitip' => 'required',
+            'namapenitip' => 'required',
             'nomer' => 'required|numeric',
         ];
     }
@@ -41,7 +41,7 @@ class StorePenitipRequest extends FormRequest
     {
         return [
             'namapenitip' => 'Nama Penitip',
-            'nomer' => 'Nomer',
+            'nomer' => 'Stok Masuk',
         ];
     }
 }

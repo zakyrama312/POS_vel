@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Penitip extends Model
+class sellers extends Model
 {
     use HasFactory;
-    protected $table = 'penitips';
+
+    protected $table = 'sellers';
     protected $primarykey = 'id';
     protected $guarded = [];
     // public $incrementing = false;

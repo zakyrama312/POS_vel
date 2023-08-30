@@ -60,6 +60,7 @@ class StocksController extends Controller
         $datastok = $data->stok_awal;
         $hasil = $stokmasuk + $datastok;
         $data->stok_awal   = $hasil;
+        $data->stok_akhir = $hasil;
         $data->save();
 
 

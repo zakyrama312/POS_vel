@@ -13,7 +13,8 @@ class PenitipController extends Controller
      */
     public function index()
     {
-        //
+        $penitip = Penitip::all();
+        return view('admin.penitip.index', compact('penitip'));
     }
 
     /**
@@ -21,7 +22,7 @@ class PenitipController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.penitip.add');
     }
 
     /**
@@ -29,7 +30,15 @@ class PenitipController extends Controller
      */
     public function store(StorePenitipRequest $request)
     {
-        //
+        $request -> validate();
+        Penitip::create([
+            'namapenitip' => $request -> nama_penitip,
+            'nomer' => $request -> no_telp,
+            'created_at' => now(),
+        ]);
+
+        return redirect('penitip')->with('msg', 'Berhasil Ditambahkan');
+
     }
 
     /**

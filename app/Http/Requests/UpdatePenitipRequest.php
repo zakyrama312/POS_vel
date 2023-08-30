@@ -11,7 +11,7 @@ class UpdatePenitipRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,26 @@ class UpdatePenitipRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nama_penitip' => 'required',
+            'nomer' => 'required|numeric',
+        ];
+    }
+    public function messages(): array
+    {
+        return [
+            'required' => 'Data :attribute harus diisi',
+            'unique' => 'Data sudah ada',
+            'min' => 'Jumlah karakter kurang',
+            'max' => 'Jumlah karakter terlalu panjang',
+            'email' => 'Harus berupa Email',
+            'numeric' => 'Harus berupa Nomor'
+        ];
+    }
+    public function attributes(): array
+    {
+        return [
+            'namapenitip' => 'Nama Penitip',
+            'nomer' => 'Stok Masuk',
         ];
     }
 }

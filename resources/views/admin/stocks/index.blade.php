@@ -8,13 +8,21 @@
                 <div class="card flex-fill">
                     <div class="card-header">
                         {{-- <h5 class="card-title mb-0">Latest Projects</h5> --}}
-                        <a href="{{ url('products/create') }}" class="btn btn-outline-primary">Tambah Barang</a>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="{{ url('products/create') }}" class="btn btn-primary">Tambah Barang</a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="{{ url('printstock') }}" class="btn btn-success position-absolute top-10 end-0 me-4" title="Print"> <i class="align-middle" data-feather="printer"></i> </a>
+                            </div>
+                        </div>
                          @if (session('msg'))
                             <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                                 {{ session('msg') }}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
+                        
                     </div>
                     <div class="card-body">
                         <table  id="databarang" class="table table-striped table-hover table-bordered">
@@ -25,7 +33,7 @@
                             <th scope="col">Nama Barang</th>
                             <th scope="col">Stok Masuk</th>
                             <th scope="col">Stok Akhir</th>
-                            <th scope="col" style="width: 13%">Opsi</th>
+                            <th scope="col" style="width: 13%">Restock</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,7 +48,7 @@
                                     <form action="{{ url('stocks/'.$prd -> id ) }}" method="post">
                                         @csrf
                                         @method('PUT')
-                                        <input type="text" class="form-control" placeholder="input stok" name="inputstok">
+                                        <input type="number" class="form-control text-center" placeholder="..." name="inputstok">
                                     </form>
                                     {{-- <a href="{{ url('products/'. $prd -> id .'/edit/') }}" class="text-warning"><i class="align-middle" data-feather="edit"></i> <span class="align-middle"></a> --}}
                                     </td>

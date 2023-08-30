@@ -17,10 +17,10 @@
 	<title>Point of Sales</title>
 
 	<link href="{{ asset('/')}}assets/css/app.css" rel="stylesheet">
+	<link href="{{ asset('/')}}assets/css/style.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     {{-- data tables --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
     {{-- end data tables --}}
 </head>
 
@@ -28,7 +28,7 @@
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="index.html">
+				<a class="sidebar-brand" href="/dashboard">
           <span class="align-middle">POS Vel</span>
         </a>
 
@@ -37,34 +37,39 @@
 						Pages
 					</li>
 
-					<li class="sidebar-item {{ ((request()->segment('1') == '' || request()->segment('1') == '/') ? 'active' : '') }}">
-						<a class="sidebar-link" href="{{ url('/') }}">
-              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-            </a>
+					<li class="sidebar-item {{ ((request()->segment('1') == '' || request()->segment('1') == '/dashboard') ? 'active' : '') }}">
+						<a class="sidebar-link" href="{{ url('/dashboard') }}">
+							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+						</a>
 					</li>
 
 					<li class="sidebar-item {{ (request()->segment('1') == 'products') ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{ url('products') }}">
-              <i class="align-middle" data-feather="folder-plus"></i> <span class="align-middle">Barang</span>
-            </a>
+							<i class="align-middle" data-feather="folder-plus"></i> <span class="align-middle">Barang</span>
+						</a>
 					</li>
 
 					<li class="sidebar-item {{ (request()->segment('1') == 'stocks') ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{ url('stocks') }}">
-              <i class="align-middle" data-feather="folder-plus"></i> <span class="align-middle">Stok Barang</span>
-            </a>
+							<i class="align-middle" data-feather="folder-plus"></i> <span class="align-middle">Stok Barang</span>
+						</a>
+					</li>
+					<li class="sidebar-item {{ (request()->segment('1') == 'categories') ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{ url('categories') }}">
+							<i class="align-middle" data-feather="layers"></i> <span class="align-middle">kategori</span>
+						</a>
 					</li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-sign-up.html">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Penitip Barang</span>
-            </a>
+					<li class="sidebar-item {{ (request()->segment('1') == 'sellers') ? 'active' : '' }}">
+						<a class="sidebar-link "href="{{ url('sellers') }}">
+							<i class="align-middle" data-feather="users"></i> <span class="align-middle">Penitip Barang</span>
+						</a>
 					</li>
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="pages-blank.html">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Petugas</span>
-            </a>
+							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Petugas</span>
+						</a>
 					</li>
 
 					<li class="sidebar-header">
@@ -73,14 +78,14 @@
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="ui-buttons.html">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Laporan Penjualan</span>
-            </a>
+							<i class="align-middle" data-feather="book"></i> <span class="align-middle">Laporan Penjualan</span>
+						</a>
 					</li>
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="ui-forms.html">
-              <i class="align-middle" data-feather="square"></i> <span class="align-middle">Pengeluaran</span>
-            </a>
+							<i class="align-middle" data-feather="square"></i> <span class="align-middle">Pengeluaran</span>
+						</a>
 					</li>
 
 					<li class="sidebar-header">
@@ -89,8 +94,8 @@
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="charts-chartjs.html">
-              <i class="align-middle" data-feather="folder"></i> <span class="align-middle">Toko</span>
-            </a>
+							<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Toko</span>
+						</a>
 					</li>
 				</ul>
 
@@ -100,8 +105,8 @@
 		<div class="main">
 			<nav class="navbar navbar-expand navbar-light navbar-bg">
 				<a class="sidebar-toggle js-sidebar-toggle">
-          <i class="hamburger align-self-center"></i>
-        </a>
+					<i class="hamburger align-self-center"></i>
+				</a>
 
 				<div class="navbar-collapse collapse">
 					<ul class="navbar-nav navbar-align">
@@ -111,12 +116,13 @@
               </a>
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <img src="{{ asset('/')}}assets/img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark">Charles Hall</span>
+                {{-- <img src="{{ asset('/')}}assets/img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" />  --}}
+				<i class="align-middle me-3" data-feather="user"></i><span class="text-dark">{{ Auth::user()->name }}</span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Log out</a>
+								<a class="dropdown-item" href="/logout">Log out</a>
 							</div>
 						</li>
 					</ul>
@@ -151,21 +157,11 @@
     {{-- data tables --}}
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     <script>
         $(document).ready(function() {
         $('#databarang').DataTable( {
             dom: 'Bfrtip',
-            buttons: [
-                'copyHtml5',
-                'excelHtml5',
-                'csvHtml5',
-                'pdfHtml5'
-            ]
+            
         } );
     } );
     </script>

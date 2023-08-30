@@ -8,9 +8,16 @@
                 <div class="card flex-fill">
                     <div class="card-header">
                         {{-- <h5 class="card-title mb-0">Latest Projects</h5> --}}
-                        <a href="{{ url('products/create') }}" class="btn btn-outline-primary">Tambah Barang</a>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="{{ url('products/create') }}" class="btn btn-primary">Tambah Barang</a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="{{ url('printbarang') }}" class="btn btn-success position-absolute top-10 end-0 me-4" title="Print"> <i class="align-middle" data-feather="printer"></i> </a>
+                            </div>
+                        </div>
                          @if (session('msg'))
-                            <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                            <div class="alert alert-success alert-dismissible fade show mt-2 myalert" role="alert">
                                 {{ session('msg') }}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
@@ -26,7 +33,7 @@
                             <th scope="col">HPP/Harga Beli</th>
                             <th scope="col">Harga Jual</th>
                             <th scope="col">Penitip</th>
-                            <th scope="col">Opsi</th>
+                            <th scope="col" class="text-center">Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
