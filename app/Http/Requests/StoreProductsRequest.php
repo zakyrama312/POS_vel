@@ -22,7 +22,7 @@ class StoreProductsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'kode' => 'required|unique:products,id_barang|min:7|max:7',
+            'kode' => 'required|unique:products,id_barang',
             'namabarang' => 'required',
             'stokmasuk' => 'required|numeric',
             'hpp' => 'required|numeric',

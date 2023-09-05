@@ -11,4 +11,8 @@ class LoginController extends Controller
     {
         return view('admin.dashboard.index');
     }
+    function petugas()
+    {
+        return view('petugas.dashboard.index');
+    }
 }

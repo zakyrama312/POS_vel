@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\HasFormatRupiah;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class categories extends Model
+class Chart extends Model
 {
     use HasFactory;
-    protected $table = 'categories';
+    use HasFormatRupiah;
+    protected $table = 'chart';
     protected $primarykey = 'id';
     protected $guarded = [];
-
-    // public $incrementing = false;
-    public $timestamps = true;
 }

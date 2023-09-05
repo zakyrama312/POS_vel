@@ -10,7 +10,7 @@ class sellers extends Model
 {
     use HasFactory;
 
-    protected $table = 'sellers';
+    protected $table = 'penitips';
     protected $primarykey = 'id';
     protected $guarded = [];
     // public $incrementing = false;

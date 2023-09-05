@@ -15,6 +15,7 @@ return new class extends Migration
             //
             $table->enum('role', ['admin','petugas'])->default('petugas');
             $table->string('username')->unique();
+            $table->string('kelas')->nullable();
             $table->foreignId('id_cabang')->constrained('cabangs')->onDelete('cascade')->onUpdate('cascade');
         });
     }

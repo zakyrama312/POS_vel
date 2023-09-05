@@ -72,7 +72,7 @@ class SellersController extends Controller
 
         $data-> nama_penitip = $request->namapenitip;
         $data->no_telp = $request->nomer;
-        $data->created_at = now();
+        $data->updated_at = now();
         $data->save();
 
         return redirect('sellers')->with('msg', 'Berhasil Diupdate');

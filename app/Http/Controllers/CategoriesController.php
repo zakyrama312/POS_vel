@@ -13,8 +13,9 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-       
-        
+      $kategori = categories::all();
+      return view('admin.kategori.index', compact('kategori'));
+      
     }
 
     /**
@@ -22,7 +23,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.kategori.add');
     }
 
     /**
@@ -30,7 +31,18 @@ class CategoriesController extends Controller
      */
     public function store(StorecategoriesRequest $request)
     {
-        //
+        $request->validated();
+        categories::create([
+            'nama_kategori' => $request->namakategori,
+            'created_at' => now(),
+        ]);
+        // $data = new sellers;
+        // $data -> nama_penitip = $request->namapenitip;
+        // $data -> no_telp = $request->nomer;
+        // $data -> created_at = now();
+        // $data -> save();
+
+        return redirect('categories')->with('msg', 'Berhasil Ditambahkan');
     }
 
     /**
@@ -44,17 +56,25 @@ class CategoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(categories $categories)
+    public function edit(categories $categories, $id)
     {
-        //
+        $kategori = categories::find($id);
+
+        return view('admin.kategori.edit', compact('kategori'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatecategoriesRequest $request, categories $categories)
+    public function update(UpdatecategoriesRequest $request, categories $categories, $id)
     {
-        //
+        $data = $categories::find($id);
+
+        $data-> nama_kategori = $request->namakategori;
+        $data-> updated_at = now();
+        $data->save();
+
+        return redirect('categories')->with('msg', 'Berhasil Diupdate');
     }
 
     /**

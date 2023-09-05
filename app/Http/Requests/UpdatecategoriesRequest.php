@@ -11,7 +11,7 @@ class UpdatecategoriesRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,24 @@ class UpdatecategoriesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'namakategori' => 'required',
+        ];
+    }
+    public function messages(): array
+    {
+        return [
+            'required' => 'Data :attribute harus diisi',
+            'unique' => 'Data sudah ada',
+            'min' => 'Jumlah karakter kurang',
+            'max' => 'Jumlah karakter terlalu panjang',
+            'email' => 'Harus berupa Email',
+            'numeric' => 'Harus berupa Nomor'
+        ];
+    }
+    public function attributes(): array
+    {
+        return [
+            'namakategori' => 'Nama Penitip',
         ];
     }
 }

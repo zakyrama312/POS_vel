@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateProductsRequest;
 use App\Models\Cabang;
 use App\Models\categories;
 use App\Models\Penitip;
+use App\Models\sellers;
 
 class ProductsController extends Controller
 {
@@ -29,7 +30,7 @@ class ProductsController extends Controller
     {
         //
         $kat = categories::all();
-        $nitip = Penitip::all();
+        $nitip = sellers::all();
         $stand = Cabang::all();
         return view('admin.products.addproduct', compact(['kat', 'nitip', 'stand']));
         
@@ -47,7 +48,7 @@ class ProductsController extends Controller
             'id_barang'     => $request->kode,
             'nama_barang'     => $request->namabarang,
             'stok_awal'   => $request->stokmasuk,
-            'stok_akhir' => 0,
+            'stok_akhir' => $request->stokmasuk,
             'disc' => '',
             'hpp' => $request->hpp,
             'harga_jual' => $request->harga,
@@ -70,7 +71,7 @@ class ProductsController extends Controller
         // return $products;
         $product = Products::find($id);
         $kat = categories::find($id);
-        $nitip = Penitip::find($id);
+        $nitip = sellers::find($id);
         $stand = Cabang::find($id);
 
         $product -> makeHidden('id_barang');
@@ -85,7 +86,7 @@ class ProductsController extends Controller
         //
         $product = Products::find($id);
         $kat = categories::all();
-        $nitip = Penitip::all();
+        $nitip = sellers::all();
         $stand = Cabang::all();
 
         return view('admin.products.editproducts', compact('product', 'kat', 'nitip', 'stand'));  

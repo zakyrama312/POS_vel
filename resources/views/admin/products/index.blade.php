@@ -42,8 +42,8 @@
                                 <td>{{ $loop -> iteration }}</td>
                                 <td>{{ $prd -> id_barang }}</td>
                                 <td>{{ $prd -> nama_barang }}</td>
-                                <td>{{ $prd -> hpp }}</td>
-                                <td>{{ $prd -> harga_jual }}</td>
+                                <td>{{ $prd -> formatRupiah('hpp') }}</td>
+                                <td>{{ $prd -> formatRupiah('harga_jual') }}</td>
                                 <td>{{ $prd -> penitips -> nama_penitip }}</td>
                                 <td class="text-center"><a href="{{ url('products/'. $prd -> id .'/edit/') }}" class="text-warning"><i class="align-middle" data-feather="edit"></i> <span class="align-middle"></a> 
                                     | <a href="" class="text-danger"><i class="align-middle" data-feather="trash"></i> <span class="align-middle"></a> </td>

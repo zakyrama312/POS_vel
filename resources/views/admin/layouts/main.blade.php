@@ -37,8 +37,8 @@
 						Pages
 					</li>
 
-					<li class="sidebar-item {{ ((request()->segment('1') == '' || request()->segment('1') == '/dashboard') ? 'active' : '') }}">
-						<a class="sidebar-link" href="{{ url('/dashboard') }}">
+					<li class="sidebar-item {{ ((request()->segment('1') == '/dashboard' || request()->segment('1') == '/dashboard') ? 'active' : '') }}">
+						<a class="sidebar-link" href="/dashboard">
 							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
 						</a>
 					</li>
@@ -66,8 +66,8 @@
 						</a>
 					</li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-blank.html">
+					<li class="sidebar-item {{ (request()->segment('1') == 'user') ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{ url('user') }}">
 							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Petugas</span>
 						</a>
 					</li>
