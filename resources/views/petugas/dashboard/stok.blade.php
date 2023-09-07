@@ -10,6 +10,9 @@
                         {{-- <h5 class="card-title mb-0">Latest Projects</h5> --}}
                         <div class="row">
                             <div class="col-md-6">
+                                <a href="{{ url('pos') }}" class="btn btn-secondary">Kembali</a>
+                            </div>
+                            <div class="col-md-6">
                                 <a href="{{ url('printstock') }}" class="btn btn-success position-absolute top-10 end-0 me-4" title="Print"> <i class="align-middle" data-feather="printer"></i> </a>
                             </div>
                         </div>
@@ -42,7 +45,7 @@
                                 <td>{{ $prd -> stok_awal }} pcs</td>
                                 <td>{{ $prd -> stok_akhir }} pcs</td>
                                 <td class="text-center">
-                                    <form action="{{ url('detail/'.$prd -> id ) }}" method="post">
+                                    <form action="{{ url('stok/'.$prd -> id ) }}" method="post">
                                         @csrf
                                         @method('PUT')
                                         <input type="number" class="form-control text-center" placeholder="..." name="inputstok">

@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SellersController;
 use App\Http\Controllers\SesiController;
 use App\Http\Controllers\StocksController;
+use App\Http\Controllers\StokController;
 use App\Http\Controllers\UserController;
 use App\Models\Chart;
 use App\Models\Penitip;
@@ -64,6 +65,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('categories', CategoriesController::class);
     Route::resource('pos', CartController::class);
     Route::resource('detail', DetailController::class);
+    Route::resource('stok', StokController::class);
     Route::get('/filter', [DetailController::class, 'filter']);
 
 });

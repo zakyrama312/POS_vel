@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Stocks;
-use App\Http\Requests\StoreStocksRequest;
-use App\Http\Requests\UpdateStocksRequest;
+use Illuminate\Http\Request;
 
-class StocksController extends Controller
+class StokController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,7 @@ class StocksController extends Controller
     public function index()
     {
         $stok = Stocks::all();
-        return view('admin.stocks.index', compact('stok'));
+        return view('petugas.dashboard.stok', compact('stok'));
     }
 
     /**
@@ -28,7 +27,7 @@ class StocksController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreStocksRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -36,7 +35,7 @@ class StocksController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Stocks $stocks)
+    public function show(string $id)
     {
         //
     }
@@ -44,7 +43,7 @@ class StocksController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Stocks $stocks)
+    public function edit(string $id)
     {
         //
     }
@@ -52,26 +51,25 @@ class StocksController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateStocksRequest $request, Stocks $stocks, $id)
+    public function update(Request $request, string $id)
     {
-
-        $data = $stocks->find($id);
+        $data = Stocks::find($id);
         $stokmasuk = $request->inputstok;
         $datastok = $data->stok_awal;
         $hasil = $stokmasuk + $datastok;
-        $sisa = $data-> stok_akhir + $stokmasuk;
+        $sisa = $data->stok_akhir + $stokmasuk;
         $data->stok_awal   = $hasil;
         $data->stok_akhir = $sisa;
         $data->save();
 
 
-        return redirect('stocks');
+        return redirect('stok');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Stocks $stocks)
+    public function destroy(string $id)
     {
         //
     }

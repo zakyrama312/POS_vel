@@ -5,9 +5,9 @@
 
         <div class="row">
             <div class="col-md-6">
-                <div class="card">
+                <div class="card table-responsive">
                     <div class="card-header">
-                        <a href="#" class="btn btn-outline-primary">Tambah Stok</a>
+                        <a href="stok" class="btn btn-outline-primary">Tambah Stok</a>
                         <a href="detail" class="btn btn-outline-info ms-2">Detail Penjualan</a>
                     </div>
                     <div class="card-body">
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="card">
+                <div class="card table-responsive">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-8 col-sm-6">
