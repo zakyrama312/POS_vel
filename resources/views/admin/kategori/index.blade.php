@@ -10,7 +10,7 @@
                         {{-- <h5 class="card-title mb-0">Latest Projects</h5> --}}
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="{{ url('categories/create') }}" class="btn btn-primary">Tambah Penitip</a>
+                                <a href="{{ url('categories/create') }}" class="btn btn-primary">Tambah Kategori</a>
                             </div>
                         </div>
                          @if (session('msg'))

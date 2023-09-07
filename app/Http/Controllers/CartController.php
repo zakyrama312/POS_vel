@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Products;
+use App\Models\Transaksi;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+
 
 class CartController extends Controller
 {
@@ -16,7 +20,20 @@ class CartController extends Controller
         $chart = Products::all();
         $carts = Cart::all();
         $total = $carts->sum('harga_total');
-        return view('petugas.dashboard.index', compact('chart','carts','total'));
+
+        $now = Carbon::now();
+        $thnaBulan = $now->year . $now->month;
+        $cek = Transaksi::count();
+        if ($cek == 0) {
+           $urut = 10000001;
+           $nomer =  $thnaBulan . $urut;
+
+        }else{
+            $ambil = Transaksi::all()->last();
+            $urut = (int)substr($ambil->invoice, -8) + 1;
+            $nomer =  $thnaBulan . $urut;
+        }
+        return view('petugas.dashboard.index', compact('chart','carts','total','nomer'));
     }
 
     /**
@@ -32,7 +49,38 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $data = $request->all();
+        if (count($request->idbarang) > 0) {
+            foreach ($data['idbarang'] as $item => $value) {
+                $laba = $data['hargatotal'][$item] * 10 / 100;
+                $uangtotal = $data['hargatotal'][$item];
+                $uangKembali = $uangtotal - $laba;
+                $data2 = array(
+                    'id_barang' =>$data['idbarang'][$item],
+                    'id_penitip' => $data['idpenitip'][$item],
+                    'id_cabang' => $data['idcabang'][$item],
+                    'invoice' => $data['invoice'][$item],
+                    'jumlah' =>  $data['jumlah'][$item],
+                    'total' => $data['hargatotal'][$item],
+                    'periode' => $data['periode'][$item],
+                    'laba' => $laba,
+                    'uang_kembali' => $uangKembali,
+                );
+                Order::create($data2);
+            }
+        }
+        Transaksi::create([
+            'invoice'     => $request->invoicetrans,
+            'diskon'     => 0,
+            'potongan'   => 0,
+            'bayar'   => $request->bayar,
+            'kembalian'   => $request->kembalian,
+            'periode' => date('Y-m-d'),
+            'bulan' => date("F"),
+        ]);
+        Cart::truncate();
+        return redirect('pos')->with('msg', 'Transaksi Berhasil');
     }
 
     /**

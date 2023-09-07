@@ -22,6 +22,8 @@
     {{-- data tables --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     {{-- end data tables --}}
+    {{-- sweat alert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>

@@ -7,8 +7,8 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <a href="#" class="btn btn-primary">Tambah Stok</a>
-                        <a href="#" class="btn btn-success ms-2">Detail Penjualan</a>
+                        <a href="#" class="btn btn-outline-primary">Tambah Stok</a>
+                        <a href="detail" class="btn btn-outline-info ms-2">Detail Penjualan</a>
                     </div>
                     <div class="card-body">
                         <table  id="databarang" class="table table-striped table-hover table-bordered">
@@ -43,6 +43,18 @@
                         <div class="row">
                             <div class="col-md-8 col-sm-6">
                                 <h5 class="card-title mb-0">Keranjang</h5>
+                                @if (session('msg'))
+                                    <script>
+                                        Swal.fire(
+                                            'Transaksi Berhasil',
+                                            '',
+                                            'success'
+                                            )
+                                    </script>
+                                @endif
+                            </div>
+                            <div class="col-md-4 text-right col-sm-6">
+                                <h5 class="card-title mb-0">INVOICE {{ $nomer }}</h5>
                             </div>
                         </div>
                     </div>
@@ -79,14 +91,26 @@
                             </tr>
                         </tbody>
                         </table>
+                        <form action="{{ url('pos') }}" method="post">
+                            @csrf
+                            @foreach ($carts as $prk)
+                                <input type="hidden" name="invoice[]" value="{{ $nomer }}">
+                                <input type="hidden" name="idbarang[]" value="{{ $prk -> id_barang }}">
+                                <input type="hidden" name="idpenitip[]" value="{{ $prk -> prdk -> id_penitip }}">
+                                <input type="hidden" name="idcabang[]" value="{{ $prk -> prdk -> id_cabang }}">
+                                <input type="hidden" name="jumlah[]" value="{{ $prk -> stok }}">
+                                <input type="hidden" name="harga[]" value="{{ $prk -> prdk -> harga_jual }}">
+                                <input type="hidden" name="hargatotal[]" value="{{ $prk -> harga_total }}">
+                                <input type="hidden" name="periode[]" value="{{ date('Y-m-d') }}">
+                            @endforeach
+                            <input type="hidden" name="invoicetrans" value="{{ $nomer }}">
                             <input type="hidden" onKeyUp="kalkulatorTambah(getElementById('type1').value,this.value);" value="{{ $total }}" readonly class="form-control" name="bigtotal" id="type1">
-
                         <div class="mb-3 row">
                             <div class="col-sm-6">
                                 <label for="" class="col-sm-6 col-form-label" >Bayar</label>
                             </div>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control input-lg" autofocus id="type2" name="cash" required oninvalid="this.setCustomValidity('Bayarnya Belum :D')" onKeyUp="kalkulatorTambah(getElementById('type1').value,this.value);" />
+                                <input type="text" class="form-control input-lg" autofocus id="type2" name="bayar" required oninvalid="this.setCustomValidity('Bayarnya Belum :D')" onKeyUp="kalkulatorTambah(getElementById('type1').value,this.value);" />
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -94,12 +118,11 @@
                                 <label for="" class="col-sm-6 col-form-label">Kembalian</label>
                             </div>
                             <div class="col-sm-6">
-                            {{-- <input type="text" class="form-control"  name="kembalian" id="kembalian" >
-                            <input type="text" readonly id="result" class="form-control"> --}}
-
                             <input type="hidden" name="kembalian" id="kembalian">
                             <input type="text" id="result" class="form-control" style="border: none; color: white; background-color: orangered;">
                             </div>
+                            <button type="submit" name="bayaran" class="form-control btn btn-outline-success mt-2">Transaksi</button>
+                            </form>
                         </div>
                     </div>
                 </div>
