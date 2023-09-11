@@ -37,7 +37,13 @@ class StokController extends Controller
      */
     public function show(string $id)
     {
-        //
+        Stocks::where('id_cabang', $id)
+            ->update([
+                'stok_awal' => 0,
+                'stok_akhir' => 0,
+            ]);
+
+        return redirect('stok');
     }
 
     /**

@@ -9,6 +9,8 @@ use App\Models\Transaksi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\UpdateCartRequest;
+
 
 class CartController extends Controller
 {
@@ -25,15 +27,14 @@ class CartController extends Controller
         $thnaBulan = $now->year . $now->month;
         $cek = Transaksi::count();
         if ($cek == 0) {
-           $urut = 10000001;
-           $nomer =  $thnaBulan . $urut;
-
-        }else{
+            $urut = 10000001;
+            $nomer =  $thnaBulan . $urut;
+        } else {
             $ambil = Transaksi::all()->last();
             $urut = (int)substr($ambil->invoice, -8) + 1;
             $nomer =  $thnaBulan . $urut;
         }
-        return view('petugas.dashboard.index', compact('chart','carts','total','nomer'));
+        return view('petugas.dashboard.index', compact('chart', 'carts', 'total', 'nomer'));
     }
 
     /**
@@ -57,7 +58,7 @@ class CartController extends Controller
                 $uangtotal = $data['hargatotal'][$item];
                 $uangKembali = $uangtotal - $laba;
                 $data2 = array(
-                    'id_barang' =>$data['idbarang'][$item],
+                    'id_barang' => $data['idbarang'][$item],
                     'id_penitip' => $data['idpenitip'][$item],
                     'id_cabang' => $data['idcabang'][$item],
                     'invoice' => $data['invoice'][$item],
@@ -88,48 +89,6 @@ class CartController extends Controller
      */
     public function show(Cart $cart, $id)
     {
-        $tampil = Products::find($id);
-        $harga = $tampil->harga_jual;
-        $keranjangstok = Cart::select('*')
-            ->where('id_barang', $id)
-            ->get();
-        $cek = $keranjangstok->count();
-        if ($cek == 0) {
-            Cart::create([
-                'id_barang' => $id,
-                'stok' => 1,
-                'harga_total' => $harga,
-            ]);
-
-            $stokbarang = $tampil->stok_akhir;
-            Products::where('id', $id)
-            ->update([
-                'stok_akhir' => $stokbarang-1,
-            ]);
-            return redirect('pos');
-        } else {
-            $stock = $keranjangstok[0]->stok;
-            Cart::where('id_barang', $id)
-                ->update([
-                'stok' => $stock + 1,
-            ]);
-            $updatecart = Cart::select('*')
-                        ->where('id_barang', $id)
-                        ->get();
-            $stokupdate = $updatecart[0] -> stok;
-            $total = $stokupdate * $harga;
-            $barangUpdate = Products::find($id);
-            $updateStok = $barangUpdate -> stok_akhir;
-            Products::where('id', $id)
-            ->update([
-                'stok_akhir' => $updateStok - 1,
-            ]);
-            Cart::where('id_barang', $id)
-            ->update([
-                'harga_total' => $total,
-            ]);
-            return redirect('pos');
-        }
     }
 
     /**
@@ -137,16 +96,62 @@ class CartController extends Controller
      */
     public function edit(Cart $cart, $id)
     {
-        
-      
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cart $cart)
+    public function update(UpdateCartRequest $request, Cart $cart, $id)
     {
-        //
+        
+        $jml = $request->jml;
+        $tampil = Products::find($id);
+        $harga = $tampil->harga_jual;
+        $stok = $tampil->stok_akhir;
+        $keranjangstok = Cart::select('*')
+            ->where('id_barang', $id)
+            ->get();
+        $cek = $keranjangstok->count();
+        if ($jml > $stok) {
+            return redirect('pos')->with('pesan', 'Stok Tidak Cukup');
+        } else if ($cek == 0) {
+            
+            $total = $jml * $harga;
+            Cart::create([
+                'id_barang' => $id,
+                'stok' => $jml,
+                'harga_total' => $total,
+            ]);
+            $stokbarang = $tampil->stok_akhir;
+            Products::where('id', $id)
+                ->update([
+                    'stok_akhir' => $stokbarang - $jml,
+                ]);
+            return redirect('pos');
+        } else {
+            $stock = $keranjangstok[0]->stok;
+            Cart::where('id_barang', $id)
+                ->update([
+                    'stok' => $stock + $jml,
+                ]);
+            $updatecart = Cart::select('*')
+                ->where('id_barang', $id)
+                ->get();
+            $stokupdate = $updatecart[0]->stok;
+            $total = $stokupdate * $harga;
+            $barangUpdate = Products::find($id);
+            $updateStok = $barangUpdate->stok_akhir;
+            Products::where('id', $id)
+                ->update([
+                    'stok_akhir' => $updateStok - $jml,
+                ]);
+            Cart::where('id_barang', $id)
+                ->update([
+                    'harga_total' => $total,
+                ]);
+
+            return redirect('pos');
+        }
     }
 
     /**
@@ -159,14 +164,14 @@ class CartController extends Controller
             ->get();
         $stokupdate = $updatecart[0]->stok;
         $barangUpdate = Products::find($id);
-        $stokbarang = $barangUpdate -> stok_akhir;
+        $stokbarang = $barangUpdate->stok_akhir;
         $jmlstok = $stokupdate + $stokbarang;
         Products::where('id', $id)
             ->update([
                 'stok_akhir' => $jmlstok
             ]);
-        $cart::where('id_barang',$id)
-        ->delete();
+        $cart::where('id_barang', $id)
+            ->delete();
         return redirect('pos');
     }
 }

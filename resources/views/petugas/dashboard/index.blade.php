@@ -18,6 +18,7 @@
                             <th scope="col">Produk</th>
                             <th scope="col">Stok</th>
                             <th scope="col">Harga</th>
+                            <th scope="col">Jumlah</th>
                             <th scope="col" class="text-center"></th>
                             </tr>
                         </thead>
@@ -26,10 +27,21 @@
                             <tr>
                                 <td>{{ $prd -> id_barang }}</td>
                                 <td>{{ $prd -> nama_barang }}</td>
-                                <td>{{ $prd -> stok_akhir == 0 ? 'Habis' : $prd -> stok_akhir }}</td>
+                                <td class="{{ $prd -> stok_akhir == 0 ? 'text-danger' : '' }}">{{ $prd -> stok_akhir == 0 ? 'Habis' : $prd -> stok_akhir .' pcs' }}</td>
                                 <td>{{ $prd -> formatRupiah('harga_jual') }}</td>
-                                <td class="text-center"><a href="{{ url('pos/'. $id = $prd -> id ) }}" class="text-success"><i class="align-middle" data-feather="plus-square"></i> <span class="align-middle"></a>
-                            </tr> 
+                                <form action="{{ url('pos/'. $id = $prd -> id ) }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                <td>
+                                    <input type="number" name="jml" style="width: 80px" required oninvalid="this.setCustomValidity('Diisi dulu Bang')">
+                                    @error('jml')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </td>
+                                <td class="text-center">
+                                    <button type="submit" class="text-success border-0 bg-white"><i class="align-middle" data-feather="plus-square"></i> <span class="align-middle"></button>                           
+                                </tr> 
+                                </form>
                             @endforeach
                             
                         </tbody>
@@ -50,6 +62,15 @@
                                             '',
                                             'success'
                                             )
+                                    </script>
+                                @endif
+                                @if (session('pesan'))
+                                    <script>
+                                       Swal.fire({
+                                            icon: 'error',
+                                            title: 'Oops...',
+                                            text: 'Stok Tidak Cukup',
+                                            })
                                     </script>
                                 @endif
                             </div>

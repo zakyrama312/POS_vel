@@ -4,6 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
 	<meta name="author" content="AdminKit">
@@ -87,7 +88,7 @@
         $(document).ready(function() {
         $('#databarang').DataTable( {
             dom: 'Bfrtip',
-            "pageLength": 5
+            "pageLength": 6
             
         } );
     } );

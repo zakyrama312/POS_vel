@@ -6,6 +6,7 @@
         <div class="row">
             <div class="col-12 col-lg-12 col-xxl-12 d-flex">
                 <div class="card flex-fill">
+                     
                     <div class="card-header">
                         {{-- <h5 class="card-title mb-0">Latest Projects</h5> --}}
                         <div class="row">
@@ -13,6 +14,7 @@
                                 <a href="{{ url('pos') }}" class="btn btn-secondary">Kembali</a>
                             </div>
                             <div class="col-md-6">
+                                <a href="{{ url('stok/'. $id = Auth::user()->id_cabang  ) }}" style="margin-right: 80px" class="btn btn-danger position-absolute top-10 end-0 " title="Print"> Reset Stok </a>
                                 <a href="{{ url('printstock') }}" class="btn btn-success position-absolute top-10 end-0 me-4" title="Print"> <i class="align-middle" data-feather="printer"></i> </a>
                             </div>
                         </div>
