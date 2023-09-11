@@ -78,7 +78,7 @@
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-buttons.html">
+						<a class="sidebar-link" href="laporan">
 							<i class="align-middle" data-feather="book"></i> <span class="align-middle">Laporan Penjualan</span>
 						</a>
 					</li>

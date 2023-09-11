@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PenitipController;
 use App\Http\Controllers\ProductsController;
@@ -66,6 +67,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('pos', CartController::class);
     Route::resource('detail', DetailController::class);
     Route::resource('stok', StokController::class);
+    Route::resource('laporan', LaporanController::class);
     Route::get('/filter', [DetailController::class, 'filter']);
+    Route::get('/filterlaporan', [LaporanController::class, 'filter']);
 
 });

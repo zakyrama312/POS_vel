@@ -20,7 +20,7 @@ class CartController extends Controller
     public function index()
     {
         $chart = Products::all();
-        $carts = Cart::all();
+        $carts = Cart::latest()->get();
         $total = $carts->sum('harga_total');
 
         $now = Carbon::now();

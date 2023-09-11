@@ -88,8 +88,7 @@
                                 <th class="text-center">Harga</th>
                                 <th class="text-center">Total</th>
                                 <th class="text-center" class="text-center"></th>
-                            </tr>
-                            
+                            </tr>                           
                         </thead>
                         <tbody>
                             @foreach ($carts as $prd)
@@ -112,6 +111,7 @@
                             </tr>
                         </tbody>
                         </table>
+                        {{-- form transaksi --}}
                         <form action="{{ url('pos') }}" method="post">
                             @csrf
                             @foreach ($carts as $prk)
@@ -144,6 +144,7 @@
                             </div>
                             <button type="submit" name="bayaran" class="form-control btn btn-outline-success mt-2">Transaksi</button>
                             </form>
+                        {{-- end form --}}
                         </div>
                     </div>
                 </div>
