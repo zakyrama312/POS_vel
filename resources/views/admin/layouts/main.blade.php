@@ -44,6 +44,12 @@
 						</a>
 					</li>
 
+					<li class="sidebar-item {{ (request()->segment('1') == 'sellers') ? 'active' : '' }}">
+						<a class="sidebar-link "href="{{ url('sellers') }}">
+							<i class="align-middle" data-feather="users"></i> <span class="align-middle">Penitip Barang</span>
+						</a>
+					</li>
+					
 					<li class="sidebar-item {{ (request()->segment('1') == 'products') ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{ url('products') }}">
 							<i class="align-middle" data-feather="folder-plus"></i> <span class="align-middle">Barang</span>
@@ -61,11 +67,7 @@
 						</a>
 					</li>
 
-					<li class="sidebar-item {{ (request()->segment('1') == 'sellers') ? 'active' : '' }}">
-						<a class="sidebar-link "href="{{ url('sellers') }}">
-							<i class="align-middle" data-feather="users"></i> <span class="align-middle">Penitip Barang</span>
-						</a>
-					</li>
+					
 
 					<li class="sidebar-item {{ (request()->segment('1') == 'user') ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{ url('user') }}">

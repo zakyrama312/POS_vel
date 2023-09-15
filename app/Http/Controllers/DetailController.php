@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Products;
 use App\Models\sellers;
 use App\Models\Stocks;
 use Illuminate\Http\Request;
@@ -88,7 +89,7 @@ class DetailController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = Stocks::find($id);
+        $data = Products::find($id);
         $stokmasuk = $request->inputstok;
         $datastok = $data->stok_awal;
         $hasil = $stokmasuk + $datastok;

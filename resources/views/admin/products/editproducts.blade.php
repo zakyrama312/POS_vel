@@ -10,7 +10,7 @@
                         <h5 class="card-title mb-0">Yang teliti yah :D</h5>
                     </div>
                     <div class="card-body">
-                         <form action="{{ url('products/'.$id = $product -> id) }}" method="post">
+                         <form action="{{ url('products/'.$id = $product -> id_barang) }}" method="post">
                             @csrf
                             @method('PUT')
                             <div class="mb-3 row">
@@ -40,7 +40,7 @@
                                 @enderror
                                 </div>
                             </div>
-                            <div class="mb-3 row">
+                            {{-- <div class="mb-3 row">
                                 <label for="" class="col-sm-2 col-form-label">HPP/Harga Beli</label>
                                 <div class="col-sm-10">
                                 <input type="text" name="hpp" class="form-control @error('hpp') is-invalid @enderror" value="{{ $product -> hpp }}"  id="">
@@ -48,7 +48,7 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="mb-3 row">
                                 <label for="" class="col-sm-2 col-form-label">Harga Jual</label>
                                 <div class="col-sm-10">
@@ -82,20 +82,6 @@
                                     @endforeach
                                 </select>
                                 @error('penitip')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label for="" class="col-sm-2 col-form-label">Stand</label>
-                                <div class="col-sm-10">
-                                <select name="stand" class="form-control @error('stand') is-invalid @enderror" id="">
-                                        <option value="">--Pilih Stand--</option>
-                                    @foreach ($stand as $std)
-                                        <option value="{{ $std  -> id }}"  {{ $product->id_cabang == $std -> id ? 'selected' : '' }}>{{ $std  -> nama_cabang }}</option>
-                                    @endforeach
-                                </select>
-                                @error('stand')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                                 </div>

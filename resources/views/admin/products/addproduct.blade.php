@@ -15,7 +15,7 @@
                             <div class="mb-3 row">
                                 <label for="" class="col-sm-2 col-form-label">Kode Barang</label>
                                 <div class="col-sm-10">
-                                <input type="text" name="kode" class="form-control @error('kode') is-invalid @enderror"  id="" value="{{ old('kode') }}">
+                                <input type="text" name="kode" readonly class="form-control @error('kode') is-invalid @enderror"  id="" value="{{ $nomer }}">
                                 @error('kode')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -39,7 +39,7 @@
                                 @enderror
                                 </div>
                             </div>
-                            <div class="mb-3 row">
+                            {{-- <div class="mb-3 row">
                                 <label for="" class="col-sm-2 col-form-label">HPP/Harga Beli</label>
                                 <div class="col-sm-10">
                                 <input type="text" name="hpp" class="form-control @error('hpp') is-invalid @enderror" value="{{ old('hpp') }}"  id="">
@@ -47,7 +47,7 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="mb-3 row">
                                 <label for="" class="col-sm-2 col-form-label">Harga Jual</label>
                                 <div class="col-sm-10">
@@ -86,18 +86,7 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="" class="col-sm-2 col-form-label">Stand</label>
-                                <div class="col-sm-10">
-                                <select name="stand" class="form-control @error('stand') is-invalid @enderror" id="">
-                                        <option value="">--Pilih Stand--</option>
-                                    @foreach ($stand as $std)
-                                        <option value="{{ $std -> id }}" {{ old('stand') == $std -> id ? 'selected' : '' }} >{{ $std -> nama_cabang }}</option>
-                                    @endforeach
-                                </select>
-                                @error('stand')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                                </div>
+                                    <input type="hidden" value="{{ Auth::user()->id_cabang }}" name="stand">                              
                             </div>
                             <button type="submit" name="simpan" class="btn mt-2 btn-outline-primary">Simpan</button>
                         </form>

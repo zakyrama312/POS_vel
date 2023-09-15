@@ -19,6 +19,8 @@ return new class extends Migration
             $table->char('invoice')->nullable();
             $table->integer('jumlah')->nullable();
             $table->integer('total')->nullable();
+            $table->integer('laba');
+            $table->integer('uang_kembali');
             $table->char('periode');
             $table->timestamps();
         });

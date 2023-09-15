@@ -30,7 +30,7 @@
                             <th scope="col">No</th>
                             <th scope="col">Kode Barang</th>
                             <th scope="col">Nama Barang</th>
-                            <th scope="col">HPP/Harga Beli</th>
+                            {{-- <th scope="col">HPP/Harga Beli</th> --}}
                             <th scope="col">Harga Jual</th>
                             <th scope="col">Penitip</th>
                             <th scope="col" class="text-center">Opsi</th>
@@ -42,11 +42,11 @@
                                 <td>{{ $loop -> iteration }}</td>
                                 <td>{{ $prd -> id_barang }}</td>
                                 <td>{{ $prd -> nama_barang }}</td>
-                                <td>{{ $prd -> formatRupiah('hpp') }}</td>
+                                {{-- <td>{{ $prd -> formatRupiah('hpp') }}</td> --}}
                                 <td>{{ $prd -> formatRupiah('harga_jual') }}</td>
                                 <td>{{ $prd -> penitips -> nama_penitip }}</td>
-                                <td class="text-center"><a href="{{ url('products/'. $prd -> id .'/edit/') }}" class="text-warning"><i class="align-middle" data-feather="edit"></i> <span class="align-middle"></a> 
-                                    | <a href="" class="text-danger"><i class="align-middle" data-feather="trash"></i> <span class="align-middle"></a> </td>
+                                <td class="text-center"><a href="{{ url('products/'. $prd -> id .'/edit/') }}" class="text-warning" title="edit"><i class="align-middle" data-feather="edit"></i> <span class="align-middle"></a> 
+                                    | <a href="stocks" class="text-primary" title="stok"><i class="align-middle" data-feather="package"></i> <span class="align-middle"></a> </td>
                             </tr> 
                             @endforeach
                             

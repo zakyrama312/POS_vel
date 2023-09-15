@@ -24,11 +24,11 @@ class UpdateProductsRequest extends FormRequest
         return [
             'namabarang' => 'required',
             'stokmasuk' => 'required|numeric',
-            'hpp' => 'required|numeric',
+            // 'hpp' => 'required|numeric',
             'harga' => 'required|numeric',
             'kategori' => 'required',
             'penitip' => 'required',
-            'stand' => 'required'
+            // 'stand' => 'required'
         ];
     }
     public function messages(): array

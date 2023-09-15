@@ -11,7 +11,7 @@ class Stocks extends Model
     use HasFactory;
 
     use HasFactory;
-    protected $table = 'products';
+    protected $table = 'stocks';
     protected $primarykey = 'id';
     protected $guarded = [];
     // public $incrementing = false;

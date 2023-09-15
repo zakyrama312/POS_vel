@@ -15,7 +15,7 @@
                             <div class="mb-3 row">
                                 <label for="" class="col-sm-2 col-form-label">Nama Penitip</label>
                                 <div class="col-sm-10">
-                                <input type="text" name="namapenitip" class="form-control  @error('namapenitip') is-invalid @enderror"  value="{{ old('namapenitip') }}" id="">
+                                <input type="text" name="namapenitip" autofocus class="form-control  @error('namapenitip') is-invalid @enderror"  value="{{ old('namapenitip') }}" id="">
                                 @error('namapenitip')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

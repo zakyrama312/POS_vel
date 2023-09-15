@@ -25,7 +25,7 @@ class StoreProductsRequest extends FormRequest
             'kode' => 'required|unique:products,id_barang',
             'namabarang' => 'required',
             'stokmasuk' => 'required|numeric',
-            'hpp' => 'required|numeric',
+            // 'hpp' => 'required|numeric',
             'harga' => 'required|numeric',
             'kategori' => 'required',
             'penitip' => 'required',

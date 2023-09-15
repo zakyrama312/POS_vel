@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Stocks;
 use App\Http\Requests\StoreStocksRequest;
 use App\Http\Requests\UpdateStocksRequest;
+use App\Models\Products;
 
 class StocksController extends Controller
 {
@@ -13,7 +14,7 @@ class StocksController extends Controller
      */
     public function index()
     {
-        $stok = Stocks::all();
+        $stok = Products::all();
         return view('admin.stocks.index', compact('stok'));
     }
 
@@ -55,16 +56,24 @@ class StocksController extends Controller
     public function update(UpdateStocksRequest $request, Stocks $stocks, $id)
     {
 
-        $data = $stocks->find($id);
+        $data = Products::find($id);
+        $idbarang = $data-> id_barang;
         $stokmasuk = $request->inputstok;
         $datastok = $data->stok_awal;
         $hasil = $stokmasuk + $datastok;
         $sisa = $data-> stok_akhir + $stokmasuk;
         $data->stok_awal   = $hasil;
         $data->stok_akhir = $sisa;
-        $data->save();
-
-
+        Products::where('id', $id)
+        ->update([
+            'stok_awal' => $hasil,
+            'stok_akhir' => $sisa,
+        ]);
+        Stocks::where('id_barang', $idbarang)
+        ->update([
+            'stok_awal' => $hasil,
+            'stok_akhir' => $sisa,
+        ]);
         return redirect('stocks');
     }
 
