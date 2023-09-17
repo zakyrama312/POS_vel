@@ -14,7 +14,7 @@
                         <table  id="databarang" class="table table-striped table-hover table-bordered">
                         <thead>
                             <tr>
-                            <th scope="col" style="width: 100px">Kode</th>
+                            {{-- <th scope="col" style="width: 100px">Kode</th> --}}
                             <th scope="col">Produk</th>
                             <th scope="col">Stok</th>
                             <th scope="col">Harga</th>
@@ -25,7 +25,7 @@
                         <tbody>
                             @foreach ($chart as $prd)
                             <tr>
-                                <td>{{ $prd -> id_barang }}</td>
+                                {{-- <td>{{ $prd -> id_barang }}</td> --}}
                                 <td>{{ $prd -> nama_barang }}</td>
                                 <td class="{{ $prd -> stok_akhir == 0 ? 'text-danger' : '' }}">{{ $prd -> stok_akhir == 0 ? 'Habis' : $prd -> stok_akhir .' pcs' }}</td>
                                 <td>{{ $prd -> formatRupiah('harga_jual') }}</td>
@@ -33,7 +33,7 @@
                                     @csrf
                                     @method('PUT')
                                 <td>
-                                    <input type="number" name="jml" style="width: 80px" required oninvalid="this.setCustomValidity('Diisi dulu Bang')">
+                                    <input type="number" name="jml" min="0" title="Isi Jumlah Sesuai yang akan di Transaksi" style="width: 80px" required oninvalid="this.setCustomValidity('Diisi dulu Bang')">
                                     @error('jml')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

@@ -68,24 +68,19 @@ class StokController extends Controller
         $datastok = $data->stok_awal;
         $hasil = $stokmasuk + $datastok;
         $sisa = $data->stok_akhir + $stokmasuk;
-        $data->stok_awal   = $hasil;
-        $data->stok_akhir = $sisa;
-        $view = Stocks::all()->where('id_barang', $idbarang);
-        $periode = $view -> periode;
+       
         Products::where('id', $id)
         ->update([
             'stok_awal' => $hasil,
             'stok_akhir' => $sisa,
         ]);
         $date = date('Y-m-d');
-        if ($periode == $date) {
-            Stocks::where('id_barang', $idbarang)
-                ->where('periode', $date)
-                ->update([
-                    'stok_awal' => $hasil,
-                    'stok_akhir' => $sisa,
-                ]);
-        }else{
+        $stoks = Stocks::select('*')
+            ->where('id_barang', $idbarang)
+            ->where('periode', $date)
+            ->get();
+        $cek = $stoks->count();
+        if ($cek == 0) {
             Stocks::create([
                 'id_barang' => $idbarang,
                 'id_cabang' => $idcabang,
@@ -93,8 +88,17 @@ class StokController extends Controller
                 'stok_akhir' => $sisa,
                 'periode' => $date
             ]);
+            return redirect('stok');
+        }else{
+            Stocks::where('id_barang', $idbarang)
+            ->where('periode', $date)
+            ->update([
+                'stok_awal' => $hasil,
+                'stok_akhir' => $sisa,
+            ]);
+            return redirect('stok');
         }
- 
+
 
         return redirect('stok');
     }

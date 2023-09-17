@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Stocks;
+use App\Models\Products;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreStocksRequest;
 use App\Http\Requests\UpdateStocksRequest;
-use App\Models\Products;
 
 class StocksController extends Controller
 {
@@ -57,23 +58,42 @@ class StocksController extends Controller
     {
 
         $data = Products::find($id);
-        $idbarang = $data-> id_barang;
+        $idbarang = $data->id_barang;
+        $idcabang = Auth::user()->id_cabang;
         $stokmasuk = $request->inputstok;
         $datastok = $data->stok_awal;
         $hasil = $stokmasuk + $datastok;
-        $sisa = $data-> stok_akhir + $stokmasuk;
-        $data->stok_awal   = $hasil;
-        $data->stok_akhir = $sisa;
+        $sisa = $data->stok_akhir + $stokmasuk;
+
         Products::where('id', $id)
         ->update([
             'stok_awal' => $hasil,
             'stok_akhir' => $sisa,
         ]);
-        Stocks::where('id_barang', $idbarang)
-        ->update([
-            'stok_awal' => $hasil,
-            'stok_akhir' => $sisa,
-        ]);
+        $date = date('Y-m-d');
+        $stoks = Stocks::select('*')
+            ->where('id_barang', $idbarang)
+            ->where('periode', $date)
+            ->get();
+        $cek = $stoks->count();
+        if ($cek == 0) {
+            Stocks::create([
+                'id_barang' => $idbarang,
+                'id_cabang' => $idcabang,
+                'stok_awal' => $hasil,
+                'stok_akhir' => $sisa,
+                'periode' => $date
+            ]);
+            return redirect('stocks');
+        } else {
+            Stocks::where('id_barang', $idbarang)
+                ->where('periode', $date)
+                ->update([
+                    'stok_awal' => $hasil,
+                    'stok_akhir' => $sisa,
+                ]);
+            return redirect('stocks');
+        }
         return redirect('stocks');
     }
 
