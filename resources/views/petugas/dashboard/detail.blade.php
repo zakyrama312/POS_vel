@@ -12,7 +12,8 @@
                                 <a href="{{ url('pos') }}" class="btn btn-secondary">Kembali</a>
                             </div>
                             <div class="col-md-6">
-                                 <a href="{{ url('label') }}" class="btn btn-success position-absolute top-10 end-0 me-4" title="Print"> <i class="align-middle" data-feather="printer"></i> </a>
+                                 <a href="{{ url('label') }}" class="btn btn-warning position-absolute top-10 end-0 me-4" title="Print Label"> <i class="align-middle" data-feather="printer"></i> </a>
+                                 <a href="{{ url('penjualan') }}" class="btn btn-success position-absolute top-10 end-0" style="margin-right: 80px" title="Print Penjualan"> <i class="align-middle" data-feather="printer"></i> </a>
                             </div>
                         </div>
                          @if (session('msg'))

@@ -48,6 +48,7 @@ class DetailController extends Controller
                 ->where('periode', $date)
                 ->sum('uang_kembali');
         $penitip = sellers::all();
+        
         // dd($order);
         return view('petugas.dashboard.detail', compact('order','tanggalan','penitip','total','laba','kembali'));
     }

@@ -21,7 +21,7 @@ class LabelController extends Controller
             ->orderBy('orders.invoice')
             ->groupBy('orders.id_penitip')
             ->get();
-        return view('petugas.dashboard.label', compact('order'));
+        return view('petugas.dashboard.print.label', compact('order'));
     }
 
     /**
