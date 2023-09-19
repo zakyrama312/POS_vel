@@ -11,6 +11,9 @@
                             <div class="col-md-6">
                                 <a href="{{ url('pos') }}" class="btn btn-secondary">Kembali</a>
                             </div>
+                            <div class="col-md-6">
+                                 <a href="{{ url('label') }}" class="btn btn-success position-absolute top-10 end-0 me-4" title="Print"> <i class="align-middle" data-feather="printer"></i> </a>
+                            </div>
                         </div>
                          @if (session('msg'))
                             <div class="alert alert-dismissible myalert fade show mt-2"  role="alert">

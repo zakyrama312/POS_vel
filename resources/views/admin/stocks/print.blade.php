@@ -13,8 +13,8 @@
     <thead>
         <tr>
         <th scope="col">No</th>
-        <th scope="col">Kode Barang</th>
-        <th scope="col">Nama Barang</th>
+        <th scope="col">Produk</th>
+        <th scope="col">Penitip</th>
         <th scope="col">Stok Masuk</th>
         <th scope="col">Stok Akhir</th>
         </tr>
@@ -23,8 +23,8 @@
         @foreach ($print as $prd)
         <tr>
             <td>{{ $loop -> iteration }}</td>
-            <td>{{ $prd -> id_barang }}</td>
             <td>{{ $prd -> nama_barang }}</td>
+            <td>{{ $prd -> penitips -> nama_penitip }}</td>
             <td>{{ $prd -> stok_awal }} pcs</td>
             <td>{{ $prd -> stok_akhir }} pcs</td>
         </tr> 

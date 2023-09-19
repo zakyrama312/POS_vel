@@ -10,7 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\UpdateCartRequest;
-
+use App\Models\Stocks;
 
 class CartController extends Controller
 {
@@ -106,6 +106,7 @@ class CartController extends Controller
         
         $jml = $request->jml;
         $tampil = Products::find($id);
+        $idbarang = $tampil->id_barang;
         $harga = $tampil->harga_jual;
         $stok = $tampil->stok_akhir;
         $keranjangstok = Cart::select('*')
@@ -127,6 +128,10 @@ class CartController extends Controller
                 ->update([
                     'stok_akhir' => $stokbarang - $jml,
                 ]);
+            Stocks::where('id_barang', $idbarang)
+                ->update([
+                    'stok_akhir' => $stokbarang - $jml,
+                ]);
             return redirect('pos');
         } else {
             $stock = $keranjangstok[0]->stok;
@@ -142,6 +147,10 @@ class CartController extends Controller
             $barangUpdate = Products::find($id);
             $updateStok = $barangUpdate->stok_akhir;
             Products::where('id', $id)
+                ->update([
+                    'stok_akhir' => $updateStok - $jml,
+                ]);
+            Stocks::where('id_barang', $idbarang)
                 ->update([
                     'stok_akhir' => $updateStok - $jml,
                 ]);
@@ -164,9 +173,14 @@ class CartController extends Controller
             ->get();
         $stokupdate = $updatecart[0]->stok;
         $barangUpdate = Products::find($id);
+        $idbarang = $barangUpdate->id_barang;
         $stokbarang = $barangUpdate->stok_akhir;
         $jmlstok = $stokupdate + $stokbarang;
         Products::where('id', $id)
+            ->update([
+                'stok_akhir' => $jmlstok
+            ]);
+        Products::where('id_barang', $idbarang)
             ->update([
                 'stok_akhir' => $jmlstok
             ]);
