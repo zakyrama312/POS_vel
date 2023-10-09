@@ -41,8 +41,15 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-md-8 float-right">
-                                <a href="detail" class="btn btn-success">Semua</a>
+                            <div class="col-md-6">
+                                <a href="detail" class="btn btn-success ">Semua</a>
+                            </div>
+                            <div class="col-md-2 justify-start">
+                                <form action="{{ url('/rpl') }}" method="get" class="d-flex">
+                                    @csrf
+                                    <input type="hidden" value="10" name="rpl">
+                                    <button type="submit" class="btn text-white" style="background: rgb(166, 1, 166)">RPL</button>
+                                </form>
                             </div>
                         </div>
                         <table  class="table table-striped table-hover table-bordered">

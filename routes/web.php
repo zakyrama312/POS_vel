@@ -9,6 +9,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PenitipController;
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\PrintController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SellersController;
 use App\Http\Controllers\SesiController;
@@ -50,7 +51,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [LoginController::class, 'admin'])->middleware('userAkses:admin');
     Route::get('/pos', [LoginController::class, 'petugas'])->middleware('userAkses:petugas');
     Route::get('/logout', [SesiController::class, 'logout']);
- 
+
 
     Route::get('/printbarang', function () {
         $print = Products::all();
@@ -70,9 +71,11 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('detail', DetailController::class);
     Route::resource('stok', StokController::class);
     Route::resource('laporan', LaporanController::class);
-    Route::resource('label', LabelController::class);
-    Route::resource('penjualan', PenjualanController::class);
     Route::get('/filter', [DetailController::class, 'filter']);
+    Route::get('/rpl', [DetailController::class, 'rpl']);
+    Route::get('/report', [LaporanController::class, 'report']);
+    Route::get('/print', [PrintController::class, 'printrpl']);
+    Route::get('/penjualan', [PrintController::class, 'penjualan']);
+    Route::get('/label', [PrintController::class, 'label']);
     Route::get('/filterlaporan', [LaporanController::class, 'filter']);
-
 });

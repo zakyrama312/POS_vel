@@ -13,7 +13,7 @@
   <body>
     <div class="row container-fluid  mt-3">
         <h1 class="h3 mb-3"><strong>Data Penjualan</strong> {{ $tanggalan }}</h1>
-        <table  class="table tebal table-striped table-hover table-bordered">
+        <table  class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
                     <th style="width: 20px">No</th>
@@ -23,8 +23,6 @@
                     <th class="text-center">Sisa</th>
                     <th class="text-center" >Jumlah Terjual</th>
                     <th class="text-center" style="width: 120px">Total</th>
-                    <th class="text-center" style="width: 120px">Laba</th>
-                    <th class="text-center" style="width: 120px">Uang Kembali</th>
                     <th class="text-center" style="width: 120px">Penitip</th>
                 </tr>
             </thead>
@@ -38,45 +36,17 @@
                         <td class="text-center">{{ $prd -> stok_akhir }} pcs</td>
                         <td class="text-center">{{ $prd -> jumlah }} pcs</td>
                         <td>Rp. {{ number_format($prd -> total, 0, ',', '.') }}</td>
-                        <td>Rp. {{ number_format($prd -> laba, 0, ',', '.') }}</td>
-                        <td>Rp. {{ number_format($prd -> uang_kembali, 0, ',', '.'); }}</td>
                         <td class="text-center">{{ $prd -> nama_penitip }}</td>
                     </tr> 
                     @endforeach
                     <tr>
                         <th colspan="6">Total Seluruh</th>
                         <th>Rp. {{ number_format($total, 0, ',', '.'); }}</th>
-                        <th>Rp. {{ number_format($laba, 0, ',', '.'); }}</th>
-                        <th>Rp. {{ number_format($kembali, 0, ',', '.'); }}</th>
                         <th></th>
                     </tr>
             </tbody>
         </table>
 
-        <div class="row">
-            <h3><strong>Penitip</strong></h3>
-        <div>
-            <table  class="table table-striped table-hover table-bordered">
-                <thead>
-                    <tr>
-                        <th style="width: 100px">No.</th>
-                        <th scope="col">Nama Penitip</th>
-                        <th scope="col">Uang Kembali</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach ($penjualan as $ord)
-                    <tr>
-                        <td>{{ $loop -> iteration }}</td>
-                        <td>{{ $ord -> nama_penitip }}</td>
-                        <td> Rp. {{ number_format($ord -> uang_kembali)  }} </td>
-                    @endforeach
-                    </tr>
-                </tbody>
-            </table>
-
-    </div>
-    </div>
 
 
 

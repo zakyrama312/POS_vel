@@ -1,21 +1,26 @@
     @extends('admin.layouts.main')
-        {{-- content --}}
+         {{-- content --}}
         @section('content')
-        @if ($tanggalan)
-            <h1 class="h3 mb-3"><strong>Data Penjualan</strong> {{ $tanggalan }}</h1>
-        @elseif ($start_date && $end_date)
-            <h1 class="h3 mb-3"><strong>Data Penjualan Dari</strong> {{ $tanggalan }}</h1>
-        @endif
+        <h1 class="h3 mb-3"><strong>Data Penjualan</strong> {{ $tanggalan }}</h1>
 
         <div class="row">
             <div class="col-12 col-lg-12 col-xxl-12 d-flex">
                 <div class="card flex-fill">
                     <div class="card-header">
-                        @if (session('msg'))
+                        <div class="row">
+                            <div class="col-md-6">
+                                
+                            </div>
+                            <div class="col-md-6">
+                                 {{-- <a href="{{ url('print') }}" class="btn btn-success position-absolute top-10 end-0 me-4" title="Print Label"> <i class="align-middle" data-feather="printer"></i> </a> --}}
+                            </div>
+                        </div>
+                         @if (session('msg'))
                             <div class="alert alert-dismissible myalert fade show mt-2"  role="alert">
                                 {{ session('msg') }} 
                                 <button type="button" class="btn-close btn-default ms-3" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
+                    
                         @endif
                         
                     </div>
@@ -38,26 +43,10 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-md-8 float-right">
-                                <a href="laporan" class="btn btn-success mb-3">Semua</a>
-                            </div>
-                             <div class="col-md-2 justify-start">
-                                <form action="{{ url('/report') }}" method="get" class="d-flex">
-                                    @csrf
-                                    <input type="hidden" value="10" name="rpl">
-                                    <button type="submit" class="btn text-white" style="background: rgb(166, 1, 166)">RPL</button>
-                                </form>
+                            <div class="col-md-6">
+                                <a href="laporan" class="btn btn-success ">Semua</a>
                             </div>
                         </div>
-                        @if (session('msg'))       
-                        <div class="row">
-                            <div class="col-12">
-                                    <div class="alert alert-success" role="alert">
-                                    Dari Tanggal {{ $start_date }} Sampai Tanggal {{ $end_date }}
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
                         <table  class="table table-striped table-hover table-bordered">
                         <thead>
                             <tr>
@@ -67,10 +56,8 @@
                                 <th class="text-center" style="width: 100px">Stok Awal</th>
                                 <th class="text-center">Sisa</th>
                                 <th class="text-center" >Jumlah Terjual</th>
-                                <th class="text-center" >Total</th>
-                                <th class="text-center" >Laba</th>
-                                <th class="text-center" >Uang Kembali</th>
-                                <th class="text-center" >Penitip</th>
+                                <th class="text-center" style="width: 120px">Total</th>
+                                <th class="text-center" style="width: 120px">Penitip</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -83,16 +70,12 @@
                                     <td class="text-center">{{ $prd -> stok_akhir }} pcs</td>
                                     <td class="text-center">{{ $prd -> jumlah }} pcs</td>
                                     <td>Rp. {{ number_format($prd -> total, 0, ',', '.') }}</td>
-                                    <td>Rp. {{ number_format($prd -> laba, 0, ',', '.') }}</td>
-                                    <td>Rp. {{ number_format($prd -> uang_kembali, 0, ',', '.'); }}</td>
                                     <td class="text-center">{{ $prd -> nama_penitip }}</td>
                                 </tr> 
                                 @endforeach
                                 <tr>
                                     <th colspan="6">Total Seluruh</th>
                                     <th>Rp. {{ number_format($total, 0, ',', '.'); }}</th>
-                                    <th>Rp. {{ number_format($laba, 0, ',', '.'); }}</th>
-                                    <th>Rp. {{ number_format($kembali, 0, ',', '.'); }}</th>
                                     <th></th>
                                 </tr>
                         </tbody>
