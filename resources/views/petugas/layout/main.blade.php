@@ -88,7 +88,7 @@
         $(document).ready(function() {
         $('#databarang').DataTable( {
             dom: 'Bfrtip',
-            "pageLength": 6
+            "pageLength": 8
             
         } );
     } );

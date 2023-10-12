@@ -78,4 +78,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/penjualan', [PrintController::class, 'penjualan']);
     Route::get('/label', [PrintController::class, 'label']);
     Route::get('/filterlaporan', [LaporanController::class, 'filter']);
+    Route::get('/filterreport', [LaporanController::class, 'filterreport']);
 });

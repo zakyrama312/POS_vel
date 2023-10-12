@@ -13,7 +13,7 @@
   <body>
     <div class="row container-fluid  mt-3">
         <h1 class="h3 mb-3"><strong>Data Penjualan</strong> {{ $tanggalan }}</h1>
-        <table  class="table table-striped table-hover table-bordered">
+        <table  class="table table-striped table-hover table-bordered" style="border: 1px solid black;">
             <thead>
                 <tr>
                     <th style="width: 20px">No</th>

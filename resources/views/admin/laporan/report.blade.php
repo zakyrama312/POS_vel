@@ -27,7 +27,7 @@
                     <div class="card-body table-responsive">
                         <div class="row d-flex">
                             <div class="col-md-12">
-                                <form action={{ url('/filterlaporan') }} method="get">
+                                <form action={{ url('/filterreport') }} method="get">
                                     @csrf
                                     <p><b>Filter</b> berdasarkan Tanggal</p>
                                     <div class="input-group mb-3 ">
@@ -52,12 +52,14 @@
                             <tr>
                                 <th style="width: 20px">No</th>
                                 <th class="text-center">Produk</th>
-                                <th class="text-center" >Harga Satuan</th>
+                                <th class="text-center" style="width: 120px">Harga Satuan</th>
                                 <th class="text-center" style="width: 100px">Stok Awal</th>
                                 <th class="text-center">Sisa</th>
-                                <th class="text-center" >Jumlah Terjual</th>
+                                <th class="text-center" style="width: 160px">Jumlah Terjual</th>
                                 <th class="text-center" style="width: 120px">Total</th>
                                 <th class="text-center" style="width: 120px">Penitip</th>
+                                <th class="text-center" style="width: 120px">Tanggal Transaksi</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -71,11 +73,13 @@
                                     <td class="text-center">{{ $prd -> jumlah }} pcs</td>
                                     <td>Rp. {{ number_format($prd -> total, 0, ',', '.') }}</td>
                                     <td class="text-center">{{ $prd -> nama_penitip }}</td>
+                                    <td>{{ $prd-> periode }}</td>
                                 </tr> 
                                 @endforeach
                                 <tr>
                                     <th colspan="6">Total Seluruh</th>
                                     <th>Rp. {{ number_format($total, 0, ',', '.'); }}</th>
+                                    <th></th>
                                     <th></th>
                                 </tr>
                         </tbody>

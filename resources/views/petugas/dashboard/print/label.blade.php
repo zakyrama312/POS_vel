@@ -14,7 +14,7 @@
     <div class="row">
         @foreach ($order as $ord)
         <div class="text-center col-md-2 col-3">
-            <div class="card">
+            <div class="card" style="border: 1px solid black;">
                 <div class="card-body">
                     {{ $ord -> nama_penitip }}  <br>
                    Rp. {{ number_format($ord -> uang_kembali)  }}  

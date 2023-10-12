@@ -1,6 +1,7 @@
     @extends('petugas.layout.main')
         {{-- content --}}
         @section('content')
+        <a href="{{ url('pos') }}" class="btn btn-outline-secondary mb-3"><i class="align-middle" data-feather="arrow-left"></i></a> 
         <h1 class="h3 mb-3"><strong>Data Penjualan</strong> {{ $tanggalan }}</h1>
 
         <div class="row">
@@ -8,8 +9,13 @@
                 <div class="card flex-fill">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-6">
-                                <a href="{{ url('pos') }}" class="btn btn-secondary">Kembali</a>
+                            <div class="col-md-6 float-rigt d-flex">
+                                <a href="detail" class="btn btn-success ">Semua</a>
+                                    <form action="{{ url('/rpl') }}" method="get" class="ms-3">
+                                        @csrf
+                                        <input type="hidden" value="10" name="rpl">
+                                        <button type="submit" class="btn text-white" style="background: rgb(166, 1, 166)">RPL</button>
+                                    </form>
                             </div>
                             <div class="col-md-6">
                                  <a href="{{ url('label') }}" class="btn btn-warning position-absolute top-10 end-0 me-4" title="Print Label"> <i class="align-middle" data-feather="printer"></i> </a>
@@ -26,11 +32,11 @@
                         
                     </div>
                     <div class="card-body table-responsive">
-                        <div class="row d-flex">
+                        <div class="row">
                             <div class="col-md-4">
                                 <form action={{ url('/filter') }} method="get">
                                     @csrf
-                                    <div class="input-group mb-3">
+                                    {{-- <div class="input-group mb-3">
                                         <select name="penitip" class="form-control" required aria-describedby="button-addon2">
                                             <option value="" class="text-center">-- Pilih Penitip --</option>
                                             @foreach ($penitip as $ntp)
@@ -38,17 +44,7 @@
                                             @endforeach
                                         </select>
                                         <button class="btn btn-outline-primary" type="submit" id="button-addon2"><i class="align-middle" data-feather="search"></i></button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="col-md-6">
-                                <a href="detail" class="btn btn-success ">Semua</a>
-                            </div>
-                            <div class="col-md-2 justify-start">
-                                <form action="{{ url('/rpl') }}" method="get" class="d-flex">
-                                    @csrf
-                                    <input type="hidden" value="10" name="rpl">
-                                    <button type="submit" class="btn text-white" style="background: rgb(166, 1, 166)">RPL</button>
+                                    </div> --}}
                                 </form>
                             </div>
                         </div>

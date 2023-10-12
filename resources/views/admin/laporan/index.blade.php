@@ -38,15 +38,17 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-md-8 float-right">
+                            <div class="col-md-8 float-right d-flex">
                                 <a href="laporan" class="btn btn-success mb-3">Semua</a>
-                            </div>
-                             <div class="col-md-2 justify-start">
-                                <form action="{{ url('/report') }}" method="get" class="d-flex">
+                                <form action="{{ url('/report') }}" method="get" class="ms-3">
                                     @csrf
                                     <input type="hidden" value="10" name="rpl">
                                     <button type="submit" class="btn text-white" style="background: rgb(166, 1, 166)">RPL</button>
                                 </form>
+                            </div>
+                             <div class="col-md-2 justify-start">
+                                
+                                
                             </div>
                         </div>
                         @if (session('msg'))       
