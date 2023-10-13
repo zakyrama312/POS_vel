@@ -47,7 +47,7 @@
 				<i class="align-middle me-3" data-feather="user"></i><span class="text-dark">{{ Auth::user()->name }}</span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
+								<a class="dropdown-item" href="absenmasuk"><i class="align-middle me-1" data-feather="user"></i> Absen</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="/logout">Log out</a>
 							</div>

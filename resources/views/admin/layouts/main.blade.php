@@ -93,6 +93,26 @@
 					</li>
 
 					<li class="sidebar-header">
+						Absen Piket
+					</li>
+
+					<li class="sidebar-item {{ (request()->segment('1') == 'pplg') ? 'active' : '' }}">
+						<a class="sidebar-link" href="pplg">
+							<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Siswa</span>
+						</a>
+					</li>
+					<li class="sidebar-item {{ (request()->segment('1') == 'kelas') ? 'active' : '' }}">
+						<a class="sidebar-link" href="kelas">
+							<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Kelas</span>
+						</a>
+					</li>
+					<li class="sidebar-item {{ (request()->segment('1') == 'absenpiket') ? 'active' : '' }}">
+						<a class="sidebar-link" href="absenpiket">
+							<i class="align-middle" data-feather="table"></i> <span class="align-middle">Data Absen Piket</span>
+						</a>
+					</li>
+
+					{{-- <li class="sidebar-header">
 						Pengaturan
 					</li>
 
@@ -100,7 +120,7 @@
 						<a class="sidebar-link" href="charts-chartjs.html">
 							<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Toko</span>
 						</a>
-					</li>
+					</li> --}}
 				</ul>
 
 			</div>

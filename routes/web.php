@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LabelController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LoginController;
@@ -13,6 +15,7 @@ use App\Http\Controllers\PrintController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SellersController;
 use App\Http\Controllers\SesiController;
+use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\StocksController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\UserController;
@@ -71,6 +74,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('detail', DetailController::class);
     Route::resource('stok', StokController::class);
     Route::resource('laporan', LaporanController::class);
+    Route::resource('kelas', KelasController::class);
+    Route::resource('pplg', SiswaController::class);
+    Route::resource('absen', AbsenController::class);
+    Route::get('/absenmasuk', [AbsenController::class, 'absenmasuk']);
     Route::get('/filter', [DetailController::class, 'filter']);
     Route::get('/rpl', [DetailController::class, 'rpl']);
     Route::get('/report', [LaporanController::class, 'report']);
