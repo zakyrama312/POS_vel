@@ -33,6 +33,7 @@
                             <th scope="col">No</th>
                             <th scope="col">Produk</th>
                             <th scope="col">Penitip</th>
+                            <th scope="col">Harga</th>
                             <th scope="col">Stok Masuk</th>
                             <th scope="col">Stok Akhir</th>
                             <th scope="col" style="width: 13%">Restock</th>
@@ -44,6 +45,7 @@
                                 <td>{{ $loop -> iteration }}</td>
                                 <td>{{ $prd -> nama_barang }}</td>
                                 <td>{{ $prd -> penitips -> nama_penitip }}</td>
+                                <td>Rp. {{ number_format($prd -> harga_jual, 0, ',', '.') }}</td>
                                 <td>{{ $prd -> stok_awal }} pcs</td>
                                 <td>{{ $prd -> stok_akhir }} pcs</td>
                                 <td class="text-center">

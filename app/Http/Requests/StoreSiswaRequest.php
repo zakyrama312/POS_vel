@@ -22,7 +22,7 @@ class StoreSiswaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nis' => 'required',
+            'nis' => 'required|unique:siswas,nis',
             'namasiswa' => 'required',
             'kelas' => 'required',
         ];

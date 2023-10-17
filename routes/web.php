@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AbsenController;
+use App\Http\Controllers\Absenkeluar;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ChartController;
@@ -77,7 +78,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('kelas', KelasController::class);
     Route::resource('pplg', SiswaController::class);
     Route::resource('absen', AbsenController::class);
+    Route::resource('absens', Absenkeluar::class);
     Route::get('/absenmasuk', [AbsenController::class, 'absenmasuk']);
+    Route::get('/absenkeluar', [AbsenController::class, 'absenkeluar']);
     Route::get('/filter', [DetailController::class, 'filter']);
     Route::get('/rpl', [DetailController::class, 'rpl']);
     Route::get('/report', [LaporanController::class, 'report']);

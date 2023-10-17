@@ -27,26 +27,28 @@
                         <thead>
                             <tr>
                             <th scope="col">No</th>
+                            <th scope="col">NIS</th>
                             <th scope="col">Nama Siswa</th>
                             <th scope="col">Kelas</th>
                             <th scope="col">Jam Masuk</th>
                             <th scope="col">Jam Pulang</th>
                             <th scope="col">Tanggal</th>
-                            <th scope="col" class="text-center">Opsi</th>
+                            {{-- <th scope="col" class="text-center">Opsi</th> --}}
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($kategori as $prd)
+                            @foreach ($absensi as $prd)
                             <tr>
                                 <td>{{ $loop -> iteration }}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td class="text-center">
+                                <td>{{ $prd -> nis }}</td>
+                                <td>{{ $prd -> nama_siswa }}</td>
+                                <td>{{ $prd -> nama_kelas }}</td>
+                                <td>{{ $prd -> jam_masuk }}</td>
+                                <td>{{ $prd -> jam_keluar }}</td>
+                                <td>{{ $prd -> tanggal }}</td>
+                                {{-- <td class="text-center">
                                     <a href="{{ url('categories/'. $prd -> id .'/edit/') }}" class="text-warning"><i class="align-middle" data-feather="edit"></i> <span class="align-middle"></a>
-                                </td>
+                                </td> --}}
                             </tr> 
 
 

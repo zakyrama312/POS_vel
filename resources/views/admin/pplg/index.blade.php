@@ -27,6 +27,7 @@
                         <thead>
                             <tr>
                             <th scope="col">No</th>
+                            <th scope="col">NIS</th>
                             <th scope="col">Nama Siswa</th>
                             <th scope="col">Kelas</th>
                             <th scope="col" class="text-center">Opsi</th>
@@ -36,6 +37,7 @@
                             @foreach ($siswa as $prd)
                             <tr>
                                 <td>{{ $loop -> iteration }}</td>
+                                <td>{{ $prd -> nis }}</td>
                                 <td>{{ $prd -> nama_siswa }}</td>
                                 <td>{{ $prd -> kelas -> nama_kelas }}</td>
                                 <td class="text-center">

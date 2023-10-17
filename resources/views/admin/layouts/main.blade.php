@@ -106,8 +106,8 @@
 							<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Kelas</span>
 						</a>
 					</li>
-					<li class="sidebar-item {{ (request()->segment('1') == 'absenpiket') ? 'active' : '' }}">
-						<a class="sidebar-link" href="absenpiket">
+					<li class="sidebar-item {{ (request()->segment('1') == 'absen') ? 'active' : '' }}">
+						<a class="sidebar-link" href="absen">
 							<i class="align-middle" data-feather="table"></i> <span class="align-middle">Data Absen Piket</span>
 						</a>
 					</li>

@@ -13,7 +13,7 @@
         @if (session('sudah'))
             <script>
                 Swal.fire(
-                    'Anda Sudah Absen Masuk',
+                    'Anda Sudah Absen Keluar',
                     '',
                     'success'
                     )
@@ -36,7 +36,7 @@
                     <div class="d-table-cell align-middle">
                         <a href="pos" class="btn btn-outline-secondary mb-3"><i class="align-middle" data-feather="arrow-left"></i></a>                      
                         <div class="text-center mt-4">
-                            <h1 class="h2">Absen Masuk</h1>
+                            <h1 class="h2">Absen Keluar</h1>
 							<p class="lead">
 								Piket Lab
 							</p>
@@ -44,21 +44,21 @@
 						<div class="card" style="border: 1px solid grey">
 							<div class="card-body">
 								<div class="m-sm-3">
-									<form method="post" action="{{ url('absen') }}">
+									<form method="post" action="{{ url('absens') }}">
                                         @csrf
+                                        {{-- @method('PUT') --}}
 										<div class="mb-3">
 											<label class="form-label">NIS</label>
 											<input class="form-control form-control-lg" type="text" autofocus name="nis" placeholder="Masukan NIS" />
 										</div>
 										<div class="d-grid gap-2 mt-3">
-											<button type="submit" name="sign" class="btn btn-lg btn-primary">Sign in</button>
+											<button type="submit" name="sign" class="btn btn-lg btn-danger">Sign in</button>
 										</div>
-                                        
 									</form>
 								</div>
 							</div>
 						</div>
-                         <a href="absenkeluar" style="margin-top: 5px">Absen Keluar</a>
+                        <a href="absenmasuk" style="margin-top: 5px">Absen Masuk</a>
 					</div>
 				</div>
 			</div>
